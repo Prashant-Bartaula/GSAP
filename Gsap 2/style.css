@@ -10,14 +10,17 @@ body, html{
     overflow-x: hidden;
     background-color: white;
     font-size: 30px;
-    color: white;
     position: relative;
+}
+::-webkit-scrollbar{
+    display: none;
 }
 #preloader-wrapper{
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
+    color: white;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -30,7 +33,36 @@ body, html{
     justify-content: center;
     align-items: center;
 }
-#hero{
-    font-size: 50px;
-    color: black;
+#container{
+   padding: 0 30px;
+   height: 100%;
+   width: 100%;
+   overflow-x: hidden;
+}
+#container header{
+    display: flex;
+    padding: 20px 0;
+    justify-content: space-between;
+    align-items: center;
+}
+#menu-wrapper h2{
+    font-size: 20px;
+    font-weight: 200;
+    cursor: pointer;
+    letter-spacing: .8px;
+}
+#logo-wrapper h1{
+    font-size: 40px;
+    font-weight: 500;
+    letter-spacing: .8px;
+}
+button{
+    background-color: black;
+    color: rgb(222, 217, 217);
+    border-radius: 20px;
+    padding: 10px 30px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    cursor: pointer;
 }
