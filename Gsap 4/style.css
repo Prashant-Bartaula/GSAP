@@ -95,7 +95,7 @@ a{
     gap: 50px;
 }
 .menu-item{
-    display: inline;
+    display: inline-block;
 }
 .menu-item img{
     position: absolute;
@@ -107,7 +107,7 @@ a{
     max-height: 250px;
     transition: .3s ease-in;
     opacity: 0;
-    /* transform: translate(-50%, -50%); */
+    transform: translate(-50%, -50%);
 }
 .menu-item:hover img{
     left: 73%;

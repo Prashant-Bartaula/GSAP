@@ -32,13 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
     )
     .to(".menu-wrapper", {
       transform: "translateX(0%)",
-      duration:1
     }, "<") .from(".menu-item", {
-      x: -60,
+      x: -80,
       opacity: 0,
-      stagger: 0.15,
-      duration: 0.3,
-      ease: "power2.out"
+      stagger: 0.1,
+      duration: 0.5,
+      ease: "power2.in"
     });
   menuIcon.addEventListener("click", () => {
     menuIcon.classList.toggle("menu-active");
