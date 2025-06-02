@@ -7,8 +7,22 @@ body, html{
     height: 100vh;
     width: 100vw;
     overflow-x: hidden;
-    background-color: #1A1D20;
+    background-color: white;
+    color: #1A1D20;
+    font-family: 'Montserrat', sans-serif;
 }
 ::-webkit-scrollbar{
     display: none;
 }
+section{
+    padding: 200px;
+    margin: 500px 0;
+    font-size: 100px;
+    font-weight: bolder;
+}
+
+/* this will create a fillable type of text effext  */
+span{
+    color: white;
+   filter: drop-shadow(0 0 0.06rem rgb(2, 2, 2));
+}   
