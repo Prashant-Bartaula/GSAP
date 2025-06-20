@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TImelines and control</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background: mediumseagreen;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        margin-top: 10px;
+      }
+      .ball {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: crimson;
+        position: absolute;
+        top: 100px;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="box"></div> -->
+
+    <div class="ball"></div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        //Easing Function
+        /*
+                 | Ease            | Description              |
+     | --------------- | ------------------------ |
+     | `"power1.in"`   | Starts slow, ends fast   |
+     | `"power4.out"`  | Starts fast, ends slow   |
+     | `"bounce.out"`  | Bounces at the end       |
+     | `"elastic.out"` | Overshoots like a spring |
+     | `"back.out"`    | Goes past and pulls back |
+             
+             */
+        //    gsap.fromTo(".box", {
+        //      x: 0,
+        //    }, {
+        //      x: 200,
+        //      duration: 1.5,
+        //      ease: "elastic.out"
+        //    });
+        //Repeat, Yoyo, and Delay — Loop & Bounce, Repeat: Looping loaders or effects, Yoyo: Animate forward & backward (like bouncing)
+        // gsap.to(".box", {
+        //   y: 100,
+        //   duration: 1,
+        //   repeat: -1, // infinite or 1,2.... for finite animations
+        //   yoyo: true, // bounce back, if put false the animation snaps to initial position
+        //   ease: "sine.inOut",
+        // });
+        //Keyframes Object — Simplify multi-step animations
+        // gsap.to(".box", {
+        //   keyframes: [
+        //     { x: 100, duration: 1 },
+        //     { y: 100, duration: 1, },
+        //     { rotation: 360, duration: 1 },
+        //   ],
+        //   ease: "power1.inOut",
+        //   yoyo:true,
+        //   repeat:-1
+        // });
+
+        gsap.to(".ball", {
+          keyframes: [
+            { x: 200, ease: "power2.inOut", duration: 1 },
+            { y: 100, ease: "bounce.out", duration: 1 },
+            { x: 0, ease: "power2.inOut", duration: 1 },
+            { y: 0, ease: "power1.out", duration: 1 },
+          ],
+          repeat: -1,
+          yoyo: true,
+          onRepeat: () => console.log("Bounced again!"),
+        });
+      });
+    </script>
+  </body>
+</html>
