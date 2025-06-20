@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TImelines and control</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background: mediumseagreen;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        margin-top: 10px;
+      }
+      .circle {
+        width: 200px;
+        height: 100px;
+        background: pink;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        margin-top: 10px;
+      }
+
+      .box1 {
+        width: 200px;
+        height: 100px;
+        background: red;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        margin-top: 10px;
+      }
+      .box2 {
+        width: 200px;
+        height: 100px;
+        background: blue;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+
+    <div class="circle"></div>
+    <!-- <div class="box1"></div>
+    <div class="box2"></div> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      //GSAP TIMELINES- When you need multiple animations to play in a sequence or sync them precisely
+      // let tl = gsap.timeline();
+      // tl.to(".box", { x: 100, duration: 1 })
+      // .to(".box", { y: 100, duration: 1 })
+      // .to(".box", { rotation: 360, duration: 1 });
+
+      //TIMELINE CONTROLS
+      //   let t2 = gsap.timeline({ paused: true });
+      //   t2.to(".box", { x: 100, duration: 10 }).to(".box", {
+      //     y: 100,
+      //     duration: 10,
+      //   });
+      //   t2.play(); // Start
+      //   tl.pause(); // Pause
+      //   tl.restart(); // Reset + play
+      //   tl.reverse(); // Play backwards
+
+      //Relative Positioning: "<", ">"
+      /*
+            "start at same time as previous" → "<"
+            "start after previous ends" → ">", this is by default
+            */
+      //   let tl = gsap.timeline();
+      //   tl.to(".box1", { x: 100, duration: 2 }).to(
+      //     ".box2",
+      //     { y: 100, duration: 2 },
+      //     "<"
+      //   );
+
+      //addLabel() & seek() — Timeline Markers.To jump to a specific point in the timeline — useful in sliders, walkthroughs, onboarding flows
+      //   let tl=gsap.timeline();
+      //   tl.to(".box", { x: 100, duration: 20 })
+      //     .addLabel("midway")
+      //     .to(".box", { y: 100, duration:  20});
+
+      //   tl.seek("midway"); // jump to that label
+
+      //Timeline Callbacks
+      //   let tl = gsap.timeline({
+      //     onStart: () => console.log("Start!"),
+      //     onComplete: () => console.log("All done!"),
+      //   });
+      //add() To insert a new animation, label, or callback anywhere in the timeline
+      //   tl.to(".box", { x: 100 , duration:1}).add(() => console.log("Halfway"), "+=1"); // runs after 1s from the start
+
+      //Nesting timelines-modular code
+      //   let child = gsap.timeline();
+      //   child.to(".circle", { scale: 1.5 , duration:2});
+
+      //   let master = gsap.timeline();
+      //   master.add(child).to(".box", { x: 100 });
+
+      //Repeating timesline
+      //   let tl = gsap.timeline({ repeat: 2, repeatDelay: 0.5 });
+      //   tl.to(".circle", { rotation: 360, duration: 1 });
+
+      //Paused:true - When you want to build the timeline first, then trigger it manually (e.g., on scroll, click)
+      //repeat- For looping animations, like loaders, banners, or carousel effects
+      //onstart and complete-To perform side effects or trigger other actions (e.g., show/hide, log, state updates)
+
+      /*
+| Syntax       | Meaning                                              | Example                             |
+| ------------ | ---------------------------------------------------- | ----------------------------------- |
+| `"+=1"`      | Start **1 second after** the previous animation ends | `.to(".box", { x: 100 }, "+=1")`    |
+| `"-=0.5"`    | Start **0.5 seconds before** the previous ends       | `.to(".box", { y: 50 }, "-=0.5")`   |
+| `"=2"`       | Start **exactly at 2 seconds** in the timeline       | `.to(".box", { scale: 1.5 }, "=2")` |
+| `"label"`    | Start **at a specific label**                        | `.to(".box", { ... }, "midway")`    |
+| `"label+=1"` | Start 1 second **after the label**                   | `.to(".box", { ... }, "midway+=1")` |
+    
+    */
+    </script>
+  </body>
+</html>
