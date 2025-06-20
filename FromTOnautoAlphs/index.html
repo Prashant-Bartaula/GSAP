@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background: mediumseagreen;
+        text-align: center;
+        line-height: 100px;
+        color: white;
+        margin-top: 10px;
+        opacity: 0;
+        visibility: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="showBox">Show Box</button>
+    <div class="box" style="display: none">🎁 Surprise!</div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+      document.getElementById("showBox").addEventListener("click", () => {
+        document.querySelector(".box").style.display = "block";
+
+        //fromTo() lets you explicitly define both the start and end values of an animation. gsap.fromTo(target, { fromVars }, { toVars });
+        /*
+        Use it when 
+
+        You need both start and end values defined (especially if default values are unreliable)
+        You're animating something dynamically added, like in a React useEffect
+        You want full control regardless of the element’s current style
+        */
+
+        gsap.fromTo(
+          ".box",
+          //autoAlpha: 0 → sets opacity: 0 and visibility: hidden
+          //autoAlpha: 1 → sets opacity: 1 and visibility: visible
+          { x: 100, autoAlpha: 0 },
+          { x: 0, autoAlpha: 1, duration: 1 }
+        );
+      });
+    </script>
+  </body>
+</html>
