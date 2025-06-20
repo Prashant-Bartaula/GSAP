@@ -26,9 +26,9 @@
     </style>
   </head>
   <body>
-    <!-- <div class="box"></div> -->
+    <div class="box"></div>
 
-    <div class="ball"></div>
+    <!-- <div class="ball"></div> -->
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
@@ -41,15 +41,15 @@
       document.addEventListener("DOMContentLoaded", () => {
         //Easing Function
         /*
-                 | Ease            | Description              |
-     | --------------- | ------------------------ |
-     | `"power1.in"`   | Starts slow, ends fast   |
-     | `"power4.out"`  | Starts fast, ends slow   |
-     | `"bounce.out"`  | Bounces at the end       |
-     | `"elastic.out"` | Overshoots like a spring |
-     | `"back.out"`    | Goes past and pulls back |
-             
-             */
+                       | Ease            | Description              |
+           | --------------- | ------------------------ |
+           | `"power1.in"`   | Starts slow, ends fast   |
+           | `"power4.out"`  | Starts fast, ends slow   |
+           | `"bounce.out"`  | Bounces at the end       |
+           | `"elastic.out"` | Overshoots like a spring |
+           | `"back.out"`    | Goes past and pulls back |
+
+                   */
         //    gsap.fromTo(".box", {
         //      x: 0,
         //    }, {
@@ -76,18 +76,66 @@
         //   yoyo:true,
         //   repeat:-1
         // });
+        // gsap.to(".ball", {
+        //   keyframes: [
+        //     { x: 200, ease: "power2.inOut", duration: 1 },
+        //     { y: 100, ease: "bounce.out", duration: 1 },
+        //     { x: 0, ease: "power2.inOut", duration: 1 },
+        //     { y: 0, ease: "power1.out", duration: 1 },
+        //   ],
+        //   repeat: -1,
+        //   yoyo: true,
+        //   onRepeat: () => console.log("Bounced again!"),
+        // });
+        //GSAP PERFORMANCE OPTIMIZATION
+        //1. Use GPU-Accelerated Properties
+        /*
+              | Preferred (GPU-accelerated) | Avoid When Possible     |
+      | --------------------------- | ----------------------- |
+      | `x`, `y`                    | `left`, `top`, `margin` |
+      | `scale`, `rotation`         | `width`, `height`       |
+      | `opacity`                   | `box-shadow`, `filter`  |
+      | `autoAlpha`                 | `visibility`, `display` |
+              */
 
-        gsap.to(".ball", {
-          keyframes: [
-            { x: 200, ease: "power2.inOut", duration: 1 },
-            { y: 100, ease: "bounce.out", duration: 1 },
-            { x: 0, ease: "power2.inOut", duration: 1 },
-            { y: 0, ease: "power1.out", duration: 1 },
-          ],
-          repeat: -1,
-          yoyo: true,
-          onRepeat: () => console.log("Bounced again!"),
-        });
+        //2. Use will-change for Hints- The CSS will-change property tells the browser what will animate ahead of time, helping the browser optimize GPU layers.
+        //           .animated {
+        //     will-change: transform, opacity;
+        //   }
+
+        //3. Use force3D: true for Smoother Motion
+        // gsap.to(".box", {
+        //   x: 100,
+        //   force3D: true,
+        //   duration:2,
+        // });
+
+        //4. Use autoAlpha Instead of opacity + visibility
+
+        //5. Kill or Reset Unused Animations — For single-page apps or repeated interactions, always clean up to avoid memory leaks:
+        // let hoverAnim;
+
+        // element.addEventListener("mouseenter", () => {
+        //   if (hoverAnim) hoverAnim.kill(); // kill old one first
+        //   hoverAnim = gsap.to(element, { scale: 1.1, duration: 0.3 });
+        // });
+
+        // element.addEventListener("mouseleave", () => {
+        //   if (hoverAnim) hoverAnim.kill(); // stop scale-up
+        //   hoverAnim = gsap.to(element, { scale: 1, duration: 0.3 });
+        // });
+
+
+        /*
+        | Situation                            | Use `.kill()`?   |
+| ------------------------------------ | ---------------- |
+| Static, one-time animation           | ❌ No             |
+| Looping animation you want to cancel | ✅ Yes            |
+| Animating same element repeatedly    | ✅ Yes (kill old) |
+| SPA route changes                    | ✅ Yes            |
+| ScrollTrigger reuse                  | ✅ Yes            |
+
+        */
       });
     </script>
   </body>
